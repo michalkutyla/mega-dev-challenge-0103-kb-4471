@@ -1,0 +1,1 @@
+import{E as e,_ as t,w as n}from"../chunks/DgZ7eMIM.js";import"../chunks/xihTtKlq.js";import"../chunks/DTrI_f4B.js";var r=e(`<meta http-equiv="refresh" content="0; url=/kb"/>`),i=e(`<p><a href="/kb">support desk · kb</a></p>`);function a(e){var a=i();t(`1uha8ag`,e=>{var t=r();n(e,t)}),n(e,a)}export{a as component};
