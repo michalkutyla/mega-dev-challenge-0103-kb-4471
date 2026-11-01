@@ -4,7 +4,7 @@ title: '#4471 · split by problem'
 owner: Michal
 status: proposed
 reviewed: 2026-11-01
-signature: Michal
+signature: v1.eyJzdWIiOiIxMjg0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM1MTQyNzYsImV4cCI6MTc5MzYwMDY3Nn0.n5AIIYS2zS96EwtvjXXpOsLvcLGihoyC3vPnfTugjo0
 ---
 
 <script>
