@@ -1,0 +1,60 @@
+---
+layout: runbook
+title: '#4471 · split by problem'
+owner: Michal
+status: proposed
+reviewed: 2026-11-01
+signature: Michal
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const tickets = {
+    parser: 'https://github.com/michalkutyla/mega-dev-challenge-0103-kb-4471/issues/1',
+    hint: 'https://github.com/michalkutyla/mega-dev-challenge-0103-kb-4471/issues/2',
+    'one-day': 'https://github.com/michalkutyla/mega-dev-challenge-0103-kb-4471/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its own table says
+otherwise. The reports in it describe more than one problem, and one fix to the parser closes
+only some of them.
+
+<Callout kind="warn">
+Not one issue. Each problem below has its own ticket now. The parser fix does not close the other two.
+</Callout>
+
+## The problems
+
+<ProblemTable ticket={4471} {tickets} />
+
+- **`parser`**: the shared parser reads every date month first, and these tenants write the day
+  first. The day and month swap: 4 March becomes 3 April. This is the fix that is queued.
+- **`hint`**: tenants on `booking-v3` show `MM/DD/YYYY` under the date field. Their people type
+  month first, as the hint asks, and the form reads it day first, the tenant's way. The day and
+  month swap too, but the parser fix does not touch it: the hint has to change.
+- **`one-day`**: the date is read right and lands one day early. A client in Lisbon got Tuesday
+  and a client in Toronto got Monday for the same meeting; June bookings alone were off by a
+  day. That is a time-zone shift when a date is shown, not a month/day swap. The desk had already
+  noted these reports, then filed them under `parser` because of their tenant.
+
+## Why it merged as one
+
+- [Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges on subject line alone. Every one
+  of these problems arrives as "wrong day" or "wrong date", so the subject cannot tell them apart.
+- Intake's tag comes from the reporter's browser, not the tenant. Every `en-US` browser was tagged
+  `hint`, whatever tenant or channel it came from, so the tags counted the wrong reports as `hint`.
+- The ticket export repeats reports across pages. Counted by id, the rows give the same total
+  as the desk.
+
+## As #4471 shows it
+
+The table on [#4471](/kb/incidents/4471), by cause only:
+
+<CauseTable ticket={4471} />
+
+<RenderStamp {signature} />
